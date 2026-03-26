@@ -1,0 +1,363 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ========================================
+   NEO-BRUTALIST TYPOGRAPHY SYSTEM
+   Responsive, readable, AI-searchable
+   ======================================== */
+
+:root {
+  /* Neo-Brutalist Colors */
+  --void: #000000;
+  --electric: #FFEA00;
+  --concrete: #1A1A1A;
+  --rebar: #333333;
+  --ghost: #888888;
+  --bone: #E8E0D0;
+  --blood: #FF2D00;
+  --ice: #00F5FF;
+  
+  /* Shadows - Brutalist offset */
+  --shadow-sm: 4px 4px 0 var(--electric);
+  --shadow-md: 6px 6px 0 var(--electric);
+  --shadow-lg: 8px 8px 0 var(--electric);
+  --shadow-xl: 12px 12px 0 var(--electric);
+  --shadow-red: 8px 8px 0 var(--blood);
+  --shadow-ice: 8px 8px 0 var(--ice);
+  
+  /* Typography Scale - Fluid responsive */
+  --font-mono: var(--font-space-mono);
+  --font-display: var(--font-bebas-neue);
+  --font-body: var(--font-barlow);
+  
+  /* Readable body font size - INCREASED for better visibility */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 0.75vw, 1.875rem);
+  --text-3xl: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  
+  /* Display Scale - Responsive hero text */
+  --display-sm: clamp(2.5rem, 5vw + 1rem, 4rem);
+  --display-md: clamp(3.5rem, 8vw + 1rem, 6rem);
+  --display-lg: clamp(4.5rem, 10vw + 1rem, 8rem);
+  --display-xl: clamp(5rem, 12vw + 1rem, 10rem);
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Standard Theme Variables */
+  --radius: 0;
+  --background: var(--void);
+  --foreground: var(--bone);
+  --card: var(--concrete);
+  --card-foreground: var(--bone);
+  --popover: var(--concrete);
+  --popover-foreground: var(--bone);
+  --primary: var(--electric);
+  --primary-foreground: var(--void);
+  --secondary: var(--rebar);
+  --secondary-foreground: var(--bone);
+  --muted: var(--rebar);
+  --muted-foreground: var(--ghost);
+  --accent: var(--electric);
+  --accent-foreground: var(--void);
+  --destructive: var(--blood);
+  --border: var(--rebar);
+  --input: var(--rebar);
+  --ring: var(--electric);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --color-ring: var(--ring);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  
+  /* Neo-Brutalist custom colors */
+  --color-void: var(--void);
+  --color-electric: var(--electric);
+  --color-concrete: var(--concrete);
+  --color-rebar: var(--rebar);
+  --color-ghost: var(--ghost);
+  --color-bone: var(--bone);
+  --color-blood: var(--blood);
+  --color-ice: var(--ice);
+}
+
+/* ========================================
+   BASE LAYER - Typography & Reset
+   ======================================== */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    background: var(--void);
+    color: var(--bone);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+  
+  /* Noise Overlay - Subtle texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Typography - Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--bone);
+  }
+  
+  h1 {
+    font-size: var(--display-xl);
+  }
+  
+  h2 {
+    font-size: var(--display-lg);
+  }
+  
+  h3 {
+    font-size: var(--display-md);
+  }
+  
+  /* Paragraphs - Readable measure */
+  p {
+    max-width: 65ch;
+    line-height: 1.7;
+  }
+  
+  /* Links */
+  a {
+    color: var(--electric);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--bone);
+  }
+  
+  /* Focus states for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--electric);
+    outline-offset: 2px;
+  }
+  
+  /* Selection */
+  ::selection {
+    background: var(--electric);
+    color: var(--void);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES - Typography
+   ======================================== */
+
+@layer utilities {
+  /* Display text - Hero headings */
+  .text-display-sm { font-size: var(--display-sm); }
+  .text-display-md { font-size: var(--display-md); }
+  .text-display-lg { font-size: var(--display-lg); }
+  .text-display-xl { font-size: var(--display-xl); }
+  
+  /* Body text - Readable sizes */
+  .text-body-xs { font-size: var(--text-xs); }
+  .text-body-sm { font-size: var(--text-sm); }
+  .text-body-base { font-size: var(--text-base); }
+  .text-body-lg { font-size: var(--text-lg); }
+  .text-body-xl { font-size: var(--text-xl); }
+  .text-body-2xl { font-size: var(--text-2xl); }
+  .text-body-3xl { font-size: var(--text-3xl); }
+  
+  /* Mono text - Labels, code */
+  .font-mono { font-family: var(--font-mono); }
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+  
+  /* Letter spacing */
+  .tracking-brutal { letter-spacing: 0.15em; }
+  .tracking-tight-brutal { letter-spacing: -0.01em; }
+  
+  /* Text shadow - Brutalist offset */
+  .text-shadow-brutal {
+    text-shadow: 4px 4px 0 var(--rebar);
+  }
+  
+  .text-shadow-brutal-lg {
+    text-shadow: 8px 8px 0 var(--rebar);
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes scan {
+  0% { top: -2px; opacity: 0.5; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Glitch effect keyframes */
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation-duration: 0.01ms !important; 
+    animation-iteration-count: 1 !important; 
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
+}
+
+/* ========================================
+   SCROLLBAR - Custom styling
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rebar);
+  border: 2px solid var(--void);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+/* Mobile - Smaller spacing, adjusted text */
+@media (max-width: 640px) {
+  :root {
+    --shadow-md: 4px 4px 0 var(--electric);
+    --shadow-lg: 6px 6px 0 var(--electric);
+    --shadow-xl: 8px 8px 0 var(--electric);
+  }
+  
+  body {
+    line-height: 1.5;
+  }
+}
+
+/* Tablet - Medium adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  :root {
+    --shadow-md: 5px 5px 0 var(--electric);
+    --shadow-lg: 7px 7px 0 var(--electric);
+  }
+}
+
+/* Desktop - Full brutalist shadows */
+@media (min-width: 1025px) {
+  body {
+    line-height: 1.6;
+  }
+}
+
+/* Print styles */
+@media print {
+  body::before {
+    display: none;
+  }
+  
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
